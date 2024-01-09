@@ -50,11 +50,11 @@
   <body>
     <section id='abstract'>
       <p> 
-       This document is aimed to guide in the process of creating a linked data (LD) version of a lexical resource, particularly a bilingual dictionary. It contains advice on the vocabularies selection, RDF generation process, and publication of the results. As result of publishing the data as LD, the converted language resource will be more interoperable and easily accessible on the Web of Data by means of standard Semantic Web technologies. The process described in this document has been illustrated with real examples extracted from Apertium RDF, an open-source machine translation system which has their data available for download.
+       This document is aimed to guide in the process of creating a linked data (LD) version of a lexical resource, particularly a bilingual dictionary. It contains advice on the vocabulary selection, RDF generation process, and publication of the results. As a result of publishing the data as LD, the converted language resource will be more interoperable and easily accessible on the Web of Data by means of standard Semantic Web technologies. The process described in this document has been illustrated with real examples extracted from Apertium RDF, an open-source machine translation system which has their data available for download.
 	   </p>
 
 	<div class="note"><p>
-   This report constitutes an update of a previously published one:  <a href="https://www.w3.org/2015/09/bpmlod-reports/bilingual-dictionaries/">Guidelines for Linguistic Linked Data Generation: Bilingual Dictionaries</a>. The previous version, which dates back 2015, used the initial <i><b>lemon</b></i> model [<cite><a href="#bib-lemon">LEMON</a></cite>, <cite><a href="#bib-lemon_paper">LEMON_PAPER</a></cite>] as core representation mechanism, while this updated version uses the more recent <i><b>Ontolex lemon</b></i>  [<cite><a href="#bib-ontolex">ONTOLEX</a></cite>, <cite><a href="#bib-ontolex_paper">ONTOLEX_PAPER</a></cite>]. Both guidelines remain valid, but we recommend to use this last version for new developments based on Ontolex lemon. The current report is lagely based on the book chapter "Converting language resources into linked data" by Cimiano et al. [<cite><a href="#bib-conv">CONV</a></cite>] that we recomend for a more complete and academic view on the matter, while we recommend the present guidelines for a quicker and more practical reference. 
+   This report constitutes an update of a previously published one:  <a href="https://www.w3.org/2015/09/bpmlod-reports/bilingual-dictionaries/">Guidelines for Linguistic Linked Data Generation: Bilingual Dictionaries</a>. The previous version, which dates to 2015, used the initial <i><b>lemon</b></i> model [<cite><a href="#bib-lemon">LEMON</a></cite>, <cite><a href="#bib-lemon_paper">LEMON_PAPER</a></cite>] as core representation mechanism, while this updated version uses the more recent <i><b>Ontolex lemon</b></i>  [<cite><a href="#bib-ontolex">ONTOLEX</a></cite>, <cite><a href="#bib-ontolex_paper">ONTOLEX_PAPER</a></cite>]. Both guidelines remain valid, but we recommend using this version for new developments based on Ontolex lemon. The current report is lagely based on the book chapter "Converting language resources into linked data" by Cimiano et al. [<cite><a href="#bib-conv">CONV</a></cite>] that we recommend for a more complete and scholarly view on the matter, while we recommend the present guidelines for a quicker and more practical reference. 
       </p>
 	  
 	  
@@ -78,11 +78,11 @@
     
    <section>
       <h2>Description of the type of resource</h2>
-      <p>The type of language resources covered in this document is <i>bilingual electronic dictionaries</i>. A <a href="http://en.wikipedia.org/wiki/Bilingual_dictionary">bilingual dictionary</a> is a specialized dictionary used to translate words or phrases from one language to another. They can be unidirectional or bidirectional, allowing translation, in the latter case, to and from both languages. In addition to the translation, a bilingual dictionary usually indicates the part of speech, gender, verb type, declination model and other grammatical properties to help a non-native speaker use the word. 
+      <p>The type of language resources covered in this document is <i>bilingual electronic dictionaries</i>. A <a href="http://en.wikipedia.org/wiki/Bilingual_dictionary">bilingual dictionary</a> provides translation equivalents of words and phrases (and examples of usage) of one language in another language. They can be unidirectional or bidirectional, allowing translation, in the latter case, to and from both languages. In addition to the translation, a bilingual dictionary usually indicates the part of speech, as well as the gender, verb type, declination model and other semantic, syntactic, and grammatical properties to help a non-native speaker use the word. 
 	  </p><p>
-	  We are interested in bilingual dictionaries that have their data in a machine-processable format, no matter whether it is stored locally or is accessible on the Web (e.g., for download). We assume that the data is represented in a structured or semi-structured way (e.g., relational database, xml, csv, etc.).
+	  We refer to bilingual dictionaries that have data in a machine-processable format, no matter whether it is stored locally or is accessible on the Web (e.g. for download). We assume that the data is represented in a structured or semi-structured way (e.g. relational database, XML, CSV, etc.).
 	  </p><p>
-	  We will illustrate our discussion with real examples from the conversion of the Apertium dictionaries into RDF [<cite><a href="#bib-ap_rdf">AP_RDF</a></cite>]. Apertium [<cite><a href="#bib-ap_paper">AP_PAPER</a></cite>] is a free/open-source machine translation platform originally designed to translate between closely related languages, although it has recently been expanded to treat more divergent language pairs. There exist Lexical Markup Framework [<cite><a href="#bib-lmf">LMF</a></cite>] versions of their linguistic data which can be found <a href="http://metashare.upf.edu/repository/search/?q=apertium+lmf">here</a></cite> and were used as starting point for the first RDF version of the Apertium dictionaries [<cite><a href="#bib-ap_rdf_paper">AP-RDF_PAPER</a></cite>], based on the original <i>lemon</i> model. A more recent version of Apertium RDF was later developed by following <i>Ontolex lemon</i> [<cite><a href="#bib-ap_rdf_v2_paper">AP_RDF_V2_PAPER</a></cite>]. 
+	  The topic is illustrated by examples from the conversion of the Apertium dictionaries into RDF [<cite><a href="#bib-ap_rdf">AP_RDF</a></cite>]. Apertium [<cite><a href="#bib-ap_paper">AP_PAPER</a></cite>] is a free/open-source machine translation platform originally designed to translate between closely related languages, although it was later expanded to treat more divergent language pairs. The Lexical Markup Framework [<cite><a href="#bib-lmf">LMF</a></cite>] versions of their linguistic data are available <a href="http://metashare.upf.edu/repository/search/?q=apertium+lmf">here</a></cite> and they were used as starting point for the first RDF version of the Apertium dictionaries [<cite><a href="#bib-ap_rdf_paper">AP-RDF_PAPER</a></cite>], based on the original <i>lemon</i> model. A more recent version of Apertium RDF was later developed by following <i>Ontolex lemon</i> [<cite><a href="#bib-ap_rdf_v2_paper">AP_RDF_V2_PAPER</a></cite>]. 
       </p>
    </section> 
   
@@ -91,21 +91,21 @@
       <p>
 	  <ul>
 	  
-	  <li>We propose Ontolex <i><b>lemon</b></i> (LExicon Model for ONtologies) [<cite><a href="#bib-ontolex">ONTOLEX</a></cite>, <cite><a href="#bib-lemon_paper">ONTOLEX_PAPER</a></cite>] to model the RDF representation of the linguistic descriptions contained in the bilingual dictionaries. Ontolex <i>lemon</i> has been designed to extend the lexical layer of ontologies with as much linguistic information as needed, and to provide it as linked data on the Web. It is made up of a series of modules, of which we will use the following three:
+	  <li>We propose Ontolex <i><b>lemon</b></i> (LExicon Model for ONtologies) [<cite><a href="#bib-ontolex">ONTOLEX</a></cite>, <cite><a href="#bib-lemon_paper">ONTOLEX_PAPER</a></cite>] to model the RDF representation of the linguistic descriptions contained in bilingual dictionaries. Ontolex <i>lemon</i> has been designed to extend the lexical layer of ontologies with as much linguistic information as needed, and to provide it as LD on the Web. It is made up of a series of modules, of which we use the following three:
 	  
 		<ul>
-		<li> <a href="https://www.w3.org/2016/05/ontolex/#core">core</a>, where lexical entries, forms, and lexical senses are defined.
-		<li> <a href="https://www.w3.org/2016/05/ontolex/#metadata-lime">lime</a>, where <code>lexicon</code> is defined
-		<li> <a href="https://www.w3.org/2016/05/ontolex/#variation-translation-vartrans">vartrans</a>. We will use essentially two classes: <code>Translation</code> and <code>TranslationSet</code>. Translation is a reification of the relation between two lexical senses associated to entries in different languages. The idea of using a reified class allows us to describe some attributes of the Translation object itself such as <code>source</code> and <code>target</code> of the translation, <code>category</code>, to determine the type of translaiton, as well as attributes denoting provenance (see later).
+		<li> <a href="https://www.w3.org/2016/05/ontolex/#core">core</a>, where lexical entries, forms, and lexical senses are defined,
+		<li> <a href="https://www.w3.org/2016/05/ontolex/#metadata-lime">lime</a>, where <code>lexicon</code> is defined,
+		<li> <a href="https://www.w3.org/2016/05/ontolex/#variation-translation-vartrans">vartrans</a>. We mainly use two classes: <code>Translation</code> and <code>TranslationSet</code>. <code>Translation</code> is a reification of the relation between two lexical senses associated to entries in different languages. Using a reified class allows us to describe attributes of the <code>Translation</code> object, such as <code>source</code> and <code>target</code> of the translation, <code>category</code>, to determine the type of translaiton, as well as attributes denoting provenance (see below). <code>TranslationSet</code> is a group of translations, typically those coming of the same bilingual dictionary.
 		</ul>
 	  
-	  <li>The use of <i>lemon</i> is complemented with <b><i>Lexinfo</b></i> [<cite><a href="#bib-lexinfo">LEXINFO</a></cite>]. Lexinfo is an ontology of types, values and properties to be used with the lemon model, partially derived from ISOcat. We use Lexinfo as a catalog of data categories (e.g., to denote gender, number, part of speech, etc.).
+	  <li>The use of <i>lemon</i> is complemented with <b><i>Lexinfo</b></i> [<cite><a href="#bib-lexinfo">LEXINFO</a></cite>]. Lexinfo is an ontology of types, values and properties that is used with the lemon model, partially derived from ISOcat. We use Lexinfo as a catalog of data categories (e.g. to denote gender, number, part of speech, etc.).
 	  
 	  <li><i><b>Translation categories</b></i> are represented by pointing to an external catalog (e.g. to state that a translation is a "cultural equivalent"). We propose the one at [<cite><a href="#bib-trcat">TRCAT</a></cite>] but any other could be used instead.
 	  
 	  <li>Other extendedly used vocabularies such as <i><b>Dublin Core</i></b> [<cite><a href="#bib-dc">DC</a></cite>] are used to attach valuable information about provenance, authoring, versioning, or licensing.   
 	  
-	  <li>Finally, the <i><b>Data Catalogue Vocabulary</b></i> [<cite><a href="#bib-dcat">DCAT</a></cite>] will be used to represent other metadata information associated to the publication of the RDF dataset.
+	  <li>Finally, the <i><b>Data Catalogue Vocabulary</b></i> [<cite><a href="#bib-dcat">DCAT</a></cite>] is used to represent other metadata information associated to the publication of the RDF dataset.
 	  
 	  </ul>
 	  
@@ -137,20 +137,20 @@
   
     <section>
       <h2>RDF generation</h2>
-      <p> For the generation and publication processes we have followed existing recommendations [<cite><a href="#bib-guide_mld">GUIDE_MLD</a></cite>, <cite><a href="#bib-conv">CONV</a></cite>], adapted to our particular case. 
+      <p> For the generation and publication processes we have followed existing recommendations [<cite><a href="#bib-guide_mld">GUIDE_MLD</a></cite>, <cite><a href="#bib-conv">CONV</a></cite>], adapted to this particular case. 
 	 
  	  <section>
 	  <h3>Analysis of the data sources</h3>
 	  <p>
-     The first activity of the publication of Linked Data is to analyse and specify the resources that will be used as source of data, as well as the data model(s) used within such sources. The analysis covers two aspects
+     The first step in the publication of Linked Data is to analyse and specify the resources that will be used as source of data, as well as the data model(s) used within such sources. The analysis covers two aspects
 	 <ul> 
 	 <li> <em> Data model</em>. All available information about the data model used in the sources has to be analysed, comprising standards, terminologies, etc. 
-	 <li> <em> Content</em>. The data underlying such models has to be analysed also, and their linguistic features examined: e.g., to identify language dependent/independent information, to understand how names and identifiers have been constructed in the source data, how language have been encoded, etc. 	
+	 <li> <em> Content</em>. The data underlying such models has to be analysed as well, and their linguistic features examined: e.g., to identify language dependent/independent information, to understand how names and identifiers have been constructed in the source data, how the language has been encoded, etc. 	
 	 </ul>
 	 The result of this phase is strongly dependent on the particular data source and its representation formalism. The general advice would be to get a good understanding of how the original dictionary is represented in order to define proper conversion rules of the original data into RDF.
 	</p><p>
 
-	Regarding our illustrating example (the Apertium EN-ES dictionary), the model used for representing the data is [<cite><a href="#bib-lmf">LMF</a></cite>]. The following lines of code illustrate how the content is represented in LMF/XML for a single translation:
+	Regarding our illustrative example (Apertium EN-ES dictionary), the model used for representing the data is [<cite><a href="#bib-lmf">LMF</a></cite>]. The following lines of code illustrate how the content is represented in LMF/XML for a single translation:
    </p><p>
 
 	<pre class="example" title="A single EN-ES translation in LMF/XML">
@@ -189,7 +189,7 @@
 	  <section>
 	  <h3>Modelling</h3>
        
-	   <p>The first step in the modelling phase is the selection of the domain vocabularies to be used. This has been already discussed in the above section "selection of vocabularies". Next, it has to be decided how the representation scheme of the source data has to be mapped into the new model. In the case of bilingual dictionaries, each dictionary is converted into three different objects in RDF (no matter if the original data comes in one or several files):
+	   <p>The first step in the modelling phase is the selection of the domain vocabularies to be used, as described in Section 2 (Selection of vocabularies). The next thing is to decide how the representation scheme of the source data has to be mapped into the new model. In the case of bilingual dictionaries, each dictionary is converted into three different objects in RDF (regardless if the original data comes in one or several files):
 	   <ul>
 	   <li>Source lexicon
 	   <li>Target lexicon
@@ -198,18 +198,18 @@
 	   
 
 	   
-	   This is illustrated in the following figure, for the conversion of an English-Spanish bilingual dictionary.
+	   This is illustrated in Figure 1, for the conversion of an English-Spanish bilingual dictionary.
 	   <br>
 	   <figure id="fig1">
 			<center>
 			<img style="width: 60%" src="./img/ExampleRDFdict.png" alt="Example RDF dictionary conversion">
-			<figcaption><span class="fig-title">Conversion of a bilingual electronic dictionary into RDF</span></figcaption>
+			<figcaption><span class="fig-title">Conversion of a bilingual dictionary into RDF</span></figcaption>
 			</center>
       </figure>
 	  
-	   In our opinion, this is the division that fits more naturally in the scheme of <i>ontolex</i> and the <i>vartans</i>  module. As result, two independent monolingual lexicons will be published on the Web of Data, along with a set of translations that connects them. The publication of additional bilingual dictionaries (following the same scheme) would imply the creation of a pool of online monolingual lexicons that grows with time, all of them potentially connected within the same RDF graph by sets of translations.  
+	   In our view, this division fits more naturally in the scheme of <i>ontolex</i> and the <i>vartans</i>  module. As a result, two independent monolingual lexicons will be published on the Web of Data, along with a set of translations that connects them. The publication of additional bilingual dictionaries (following the same scheme) would imply the creation of a pool of online monolingual lexicons that grows with time, all of them potentially connected within the same RDF graph by sets of translations.  
 	   </p><p>
-	   Going into the details of the model, the following figure illustrates the representation scheme used for a single translation, in terms of <i>ontolex</i> and the <i>vartans</i> module:
+	   Going into the details of the model, Figure 2 illustrates the representation scheme used for a single translation, in terms of <i>ontolex</i> and the <i>vartans</i> module:
 	   <br>
 	   
 	  <figure id="fig2">
@@ -221,7 +221,7 @@
 	   
 	
 	   
-	    In short, <code>ontolex:LexicalEntry</code> and their associated properties are used to account for the lexical information, while the <code>vartrans:Translation</code> class puts them in connection through <code>ontolex:LexicalSense</code>. Other simpler options are possible, of course, such as connecting directly the lexical entries without defining "intermediate" senses trough the <code>vartrans:translatableAs</code> (see <cite><a href="#bib-vt">VT</a></cite>). Nevertheless, translations occur between specific meanings of the words and the use of the <code>vartrans:Translation</code> as a connector between two <code>ontolex:LexicalSense</code> allows us to represent this fact explicitly. 
+	    In short, <code>ontolex:LexicalEntry</code> and its associated properties are used to account for the lexical information, while the <code>vartrans:Translation</code> class puts them in connection through <code>ontolex:LexicalSense</code>. Other simpler options are also possible, such as connecting the lexical entries directly without defining "intermediate" senses through the <code>vartrans:translatableAs</code> property (see <cite><a href="#bib-vt">VT</a></cite>). Nevertheless, translations occur between specific meanings of the words and the use of the <code>vartrans:Translation</code> as a connector between two <code>ontolex:LexicalSense</code> allows us to represent this explicitly. 
 				
 	   </p>
 	  </section>
@@ -231,7 +231,7 @@
     
 	  <section>
 	  <h3>URIs design</h3>
-	   <p>Among the different available patterns and recommendations for defining URIs we propose the one at [<cite><a href="#bib-isa_uris">ISA_URIS</a></cite>] although others could be used instead. In short, the ISA pattern is as follows: <code>http://{domain}/{type}/{concept}/{reference}</code>, where <code>{type}</code> should be one of a small number of possible values that declare the type of resource that is being identified. Typical examples include: 'id' or 'item' for real world objects; 'doc' for documents that describe those objects; 'def' for concepts; 'set' for datasets; or a string specific to the context, such as 'authority' or 'dcterms'.
+	   <p>Among the different patterns and recommendations that are available for defining URIs, we propose the one at [<cite><a href="#bib-isa_uris">ISA_URIS</a></cite>] although others could be used instead. In short, the ISA pattern is as follows: <code>http://{domain}/{type}/{concept}/{reference}</code>, where <code>{type}</code> should be one of a small number of possible values that declare the type of resource that is being identified. Typical examples include: 'id' or 'item' for real world objects; 'doc' for documents that describe those objects; 'def' for concepts; 'set' for datasets; or a string specific to the context, such as 'authority' or 'dcterms'.
        </p>
        <p>In our example, the main components (lexicons and translation set) of the Apertium RDF bilingual dictionary are named as follows: 
 
@@ -243,16 +243,16 @@ English-Spanish translation set: http://linguistic.linkeddata.es/id/apertium/tra
 
 	</pre>
 
-	 In order to construct the URIs of the lexical entries, senses, and rest of lexical elements, we have <i>preserved the identifiers of the original data whenever possible</i>, propagating them into the RDF representation. Some minor changes have been introduced, though. For instance, in the original data the identifier of the lexical entries ended with the particle "-l" or "-r" depending on their role as "source" or "target" in the translation. In our case, the directionality is not preserved at the level of Lexicon (but in the Translation class) so these particles are removed from the name. In addition, some other suffixes have been added for readability (this step is optional): "-form" for lexical forms, "-sense" for lexical senses, and "-trans" for translation. See the following section "generation" for particular examples.
+	 In order to construct the URIs of the lexical entries, senses, and other lexical elements, we <i>preserved the identifiers of the original data whenever possible</i>, propagating them into the RDF representation. Some minor changes have been introduced, though. For instance, in the source data (see Example 1) the identifier of the lexical entries ended with the particle "-l" or "-r" depending on their role as "source" or "target" in the translation. In our case, the directionality is not preserved at the Lexicon level (but in the Translation class) so these particles are removed from the name. In addition, some other suffixes have been added for readability (this step is optional): "-form" for lexical forms, "-sense" for lexical senses, and "-trans" for translation. See Section 4 (Generation) for particular examples.
 	</p>
 	</section>
 
 	<section>
 	  <h3>Generation</h3>
 	<p>
-	This activity deals with the transformation into RDF of the selected data sources using the representation scheme chosen in the modelling activity. Technically speaking, there are a number of frameworks and tools that can be used to assist the developer in this task (see <a href="https://www.w3.org/wiki/ConverterToRdf">here</a></cite> for an extensive list). The final choice depends on the format of the data source and the preferences and skills of the person deveoping the conversion. In our running example, <a href="http://openrefine.org/">Open Refine</a> (with its RDF extension) is a suitable choice to transform XML data into RDF, but other tools and framewors are possible. 
+	This activity deals with the RDF transformation of the selected data sources using the representation scheme chosen in the modelling activity. Technically speaking, there are a number of frameworks and tools that can be used to assist the developer in this task (see <a href="https://www.w3.org/wiki/ConverterToRdf">here</a></cite> for an extensive list). The final choice depends on the format of the data source and the preferences and skills of the person deveoping the conversion. In our running example, <a href="http://openrefine.org/">Open Refine</a> (with its RDF extension) is a suitable choice to transform XML data into RDF, but other tools and frameworks are possible. 
 	  	 </p><p>
-	As result of the transformation, three RDF files were generated, one per component (lexicons and translation set). The following examples contain the RDF code (in turtle) of a single translation. The three pieces of code come from the EN and ES lexicons and from the EN_ES translation set, respectively, of the Apertium example:
+	As a result of the transformation, three RDF files were generated, one per component (two lexicons and a translation set). The following examples contain the RDF code (in turtle) of a single translation. The three pieces of code come from the EN and ES lexicons and from the EN-ES translation set, respectively, of the Apertium example:
 
 	<pre class="example">
 apertium:lexiconEN a lime:Lexicon ;
@@ -294,7 +294,7 @@ apertium:tranSetEN-ES/bench_banco-n-en-sense-banco_bench-n-es-sense-trans a vart
 
 	</pre>
 
-	Reproducibility is an important feature, so the mappings between the original data and the new RDF-based model, as well as the scripts for the RDF generation, should be recorded and stored to enable their later reuse. 
+	As reproducibility is an important feature, the mappings between the original data and the new RDF-based model, as well as the scripts for the RDF generation, should be recorded and stored to enable their later reuse. 
 	  
 	  </section>
 	  
@@ -312,12 +312,12 @@ apertium:tranSetEN-ES/bench_banco-n-en-sense-banco_bench-n-es-sense-trans a vart
 
     <section>
       <h2>Publication</h2>
-      <p>The publication step involves: (1) dataset publication, (2) metadata publication, and (3) enabling effective discovery. Here we will focus on the second task (metadata publication). In the context of Linked Data, there are two major vocabularies for metadata of datasets and catalogues: VoID (Vocabulary of Interlinked Datasets) [<cite><a href="#bib-void">VOID</a></cite>], and DCAT (Data Catalogue Vocabulary) [<cite><a href="#bib-dcat">DCAT</a></cite>]. In our running example, we will use DCAT for describing the elements generated in the RDF conversion of bilingual dictionaries. In any case, DCAT can be complemented with VoID or other vocabularies if required.
+      <p>The publication step involves: (1) dataset publication, (2) metadata publication, and (3) enabling effective discovery. Here we focus on the second task (metadata publication). In the context of LD, there are two major vocabularies for metadata of datasets and catalogs: VoID (Vocabulary of Interlinked Datasets) [<cite><a href="#bib-void">VOID</a></cite>], and DCAT (Data Catalogue Vocabulary) [<cite><a href="#bib-dcat">DCAT</a></cite>]. In our running example, we use DCAT for describing the elements generated in the RDF conversion of bilingual dictionaries. In any case, DCAT can be complemented with VoID or other vocabularies if required.
 
     <p style="color:#FF0000";>--------------- TO BE UPDATED... ---------------</p>
 
 
-</p><p> The RDF version of <a href="http://datahub.io/dataset/apertium-en-es">Apertium EN-ES</a> was published in Datahub. The Datahub platform created a <a href="http://datahub.io/dataset/apertium-en-es">metadata file</a> for the Apertium EN-ES dataset based on DCAT. We extended such metadata file with some additional missing information such as provenance, license, and related resources. The extended metadata was <a href="http://datahub.io/dataset/apertium-en-es/resource/27e4eca8-bace-4d51-8793-23132f1d5763">published</a> as part of the Apertium EN-ES Datahub entry. The following lines are a fragment of it:     
+</p><p> The RDF version of <a href="http://datahub.io/dataset/apertium-en-es">Apertium EN-ES</a> was published in Datahub. The Datahub platform created a <a href="http://datahub.io/dataset/apertium-en-es">metadata file</a> for the Apertium EN-ES dataset based on DCAT. We extended such metadata file with additional missing information such as provenance, license, and related resources. The extended metadata was <a href="http://datahub.io/dataset/apertium-en-es/resource/27e4eca8-bace-4d51-8793-23132f1d5763">published</a> as part of the Apertium EN-ES Datahub entry. The following lines are a fragment of it:     
 
 	<pre class="example">
 &lt;dcat:Dataset rdf:about="http://linguistic.linkeddata.es/set/apertium/EN-ES"&gt;
@@ -339,7 +339,7 @@ apertium:tranSetEN-ES/bench_banco-n-en-sense-banco_bench-n-es-sense-trans a vart
 	  <li> Separate the monolingual lexicons from the translation sets (different graphs and/or files). 
 	  <li> Lexical senses should play the role of connectors between translations and lexical entries. 
 	  <li> Be consistent with the rules for naming and URIs creation.
-	  <li> Keep the identifiers of the legacy data if possible, but removing indicators of directionality if any (e.g., "l", "r", "left", "right", ...)
+	  <li> Keep the identifiers of the legacy data if possible, but remove indicators of directionality if any (e.g. "l", "r", "left", "right", ...)
 	  </ul>
       </p>
    </section> 
